@@ -56,13 +56,9 @@ While it should be faster on modern multicore SMP systems:
 Install
 -------
 
-Install the build requirements:
+Prequirements: C-compiler with OpenMP support.
 
-.. code-block::
-
-   pip install cython
-
-Install ``bincount``:
+Install with pip:
 
 .. code-block::
 
