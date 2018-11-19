@@ -1,13 +1,12 @@
-cimport numpy as np
 cimport cython
-from cython.parallel cimport parallel, prange, threadid
+from cython.parallel cimport parallel, threadid
 from libc.stdlib cimport abort, malloc, free
 from cython.operator import preincrement
 cimport openmp
 
 
 @cython.boundscheck(False)
-cdef _bincount_single(const np.uint8_t[:] a):
+cdef _bincount_single(const unsigned char[:] a):
     cdef unsigned long long i
     cdef unsigned long long l = len(a)
     cdef unsigned long long[256] ret
@@ -20,10 +19,10 @@ cdef _bincount_single(const np.uint8_t[:] a):
 
 
 @cython.boundscheck(False)
-cdef _bincount(const np.uint8_t[:] a):
+cdef _bincount(const unsigned char[:] a):
 
-    cdef np.uint64_t i, l, tid, num_threads, chunksize
-    cdef np.uint64_t* b
+    cdef unsigned long long i, l, tid, num_threads, chunksize
+    cdef unsigned long long* b
 
     num_threads = openmp.omp_get_num_procs()
     l = a.size
@@ -33,7 +32,7 @@ cdef _bincount(const np.uint8_t[:] a):
 
     with nogil, parallel(num_threads=num_threads):
         tid = threadid()
-        b = <np.uint64_t*> malloc(256 * sizeof(np.uint64_t))
+        b = <unsigned long long*> malloc(256 * sizeof(unsigned long long))
         if b is NULL:
             abort()
         for i in range(256):
