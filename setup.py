@@ -18,10 +18,9 @@ setup(
     name='bincount',
     description='No-copy parallelized bincount returning dict',
     long_description=open('README.rst').read(),
-    version='0.0.1',
+    version='0.0.2',
     author='Andrew Grigorev',
     author_email='andrew@ei-grad.ru',
     url='https://github.com/ei-grad/bincount',
-    setup_requires=['cython', 'numpy'],
     ext_modules=cythonize(ext_modules, language_level=2),
 )
