@@ -60,7 +60,7 @@ Install the build requirements:
 
 .. code-block::
 
-   pip install cython numpy
+   pip install cython
 
 Install ``bincount``:
 
