@@ -48,8 +48,18 @@ cdef _bincount(const unsigned char[:] a):
 
 
 def bincount_single(a):
-    return {n: i for n, i in enumerate(_bincount_single(a)) if i > 0}
+    if type(a).__name__ == 'Series':
+        return type(a)(
+            [_bincount_single(i) if not isinstance(i, float) else i for i in a],
+            index=a.index,
+        )
+    return _bincount_single(a)
 
 
 def bincount(a):
-    return {n: i for n, i in enumerate(_bincount(a)) if i > 0}
+    if type(a).__name__ == 'Series':
+        return type(a)(
+            [_bincount(i) if not isinstance(i, float) else i for i in a],
+            index=a.index,
+        )
+    return _bincount(a)

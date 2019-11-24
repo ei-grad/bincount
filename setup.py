@@ -21,9 +21,9 @@ if USE_CYTHON:
 
 setup(
     name='bincount',
-    description='No-copy parallelized bincount returning dict',
+    description='No-copy parallelized bincount',
     long_description=open('README.rst').read(),
-    version='0.0.5',
+    version='0.0.6',
     author='Andrew Grigorev',
     author_email='andrew@ei-grad.ru',
     url='https://github.com/ei-grad/bincount',
