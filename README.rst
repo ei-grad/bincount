@@ -3,6 +3,30 @@ bincount
 
 No-copy parallelized bincount returning dict.
 
+Install
+-------
+
+Prequirements: C-compiler with OpenMP support.
+
+Install with pip:
+
+.. code-block::
+
+   pip install bincount
+
+Usage
+-----
+
+There is a ``bincount`` (a parallel version) and a ``bincount_single`` (which don't
+parallelize the calculation) functions, both returning the dict containing the
+number of occurrences of each byte value in the passed bytes-like object:
+
+.. code-block::
+
+   >>> from bincount import bincount
+   >>> bincount(open('a-tiny-file.txt', 'rb').read())
+   {59: 2, 65: 5, 66: 1, 67: 3, 68: 2, 69: 3, 73: 4, 76: 7, 84: 3, 86: 1, 95: 4}
+
 Motivation
 ----------
 
@@ -52,27 +76,3 @@ While it should be faster on modern multicore SMP systems:
    CPU times: user 6.83 s, sys: 354 ms, total: 7.19 s
    Wall time: 705 ms
    Out[4]: 58941384
-
-Install
--------
-
-Prequirements: C-compiler with OpenMP support.
-
-Install with pip:
-
-.. code-block::
-
-   pip install bincount
-
-Usage
------
-
-There is a ``bincount`` (a parallel version) and a ``bincount_single`` (which don't
-parallelize the calculation) functions, both returning the dict containing the
-number of occurrences of each byte value in the passed bytes-like object:
-
-.. code-block::
-
-   >>> from bincount import bincount
-   >>> bincount(open('a-tiny-file.txt', 'rb').read())
-   {59: 2, 65: 5, 66: 1, 67: 3, 68: 2, 69: 3, 73: 4, 76: 7, 84: 3, 86: 1, 95: 4}
